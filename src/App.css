@@ -1,0 +1,77 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px 0;
+}
+
+/* Custom Button Styles */
+.btn-dark-custom {
+  background-color: #000;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  transition: all 0.3s ease;
+}
+
+.btn-dark-custom:hover {
+  background-color: #333;
+  transform: translateY(-2px);
+}
+
+/* Product Card Animation */
+.product-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Banner Styles */
+.hero-banner {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 15px;
+  padding: 60px 40px;
+  margin-bottom: 40px;
+}
+
+/* Category Card */
+.category-card {
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  background: white;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.category-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+/* Loading Spinner */
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-banner {
+    padding: 30px 20px;
+  }
+  
+  .hero-banner h1 {
+    font-size: 28px;
+  }
+}
