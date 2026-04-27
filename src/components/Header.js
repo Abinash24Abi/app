@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { Navbar, Nav, Container, Badge } from 'react-bootstrap';
 import { useCart } from '../context/CartContext';
 
 const Header = () => {
@@ -18,81 +19,53 @@ const Header = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
-      <div className="container">
-
-        {/* LOGO */}
-        <Link to="/" className="navbar-brand fw-bold fs-3">
-          <span className="text-dark">FASHION</span>
-          <span className="text-secondary">STORE</span>
-        </Link>
-
-        {/* TOGGLE BUTTON */}
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarContent"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-
-        {/* NAV CONTENT */}
-        <div className="collapse navbar-collapse" id="navbarContent">
-
-          {/* CENTER MENU */}
-          <ul className="navbar-nav mx-auto text-center">
-            <li className="nav-item">
-              <Link to="/" className="nav-link mx-2">Home</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/category/men's clothing" className="nav-link mx-2">Men</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/category/women's clothing" className="nav-link mx-2">Women</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/category/jewelery" className="nav-link mx-2">Accessories</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/category/electronics" className="nav-link mx-2">Electronics</Link>
-            </li>
-          </ul>
-
-          {/* SEARCH + CART */}
-          <div className="d-flex align-items-center flex-column flex-lg-row gap-2">
-
-            {/* SEARCH */}
-            <form onSubmit={handleSearch} className="d-flex">
-              <input
-                type="text"
-                className="form-control me-2"
-                placeholder="Search products..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-              <button type="submit" className="btn btn-dark">
-                Search
-              </button>
-            </form>
-
-            {/* CART */}
-            <Link to="/cart" className="position-relative ms-lg-3 mt-2 mt-lg-0">
-              <i className="bi bi-cart" style={{ fontSize: '24px' }}></i>
-
-              {cartItemCount > 0 && (
-                <span
-                  className="badge bg-dark position-absolute top-0 start-100 translate-middle rounded-pill"
-                >
-                  {cartItemCount}
-                </span>
-              )}
-            </Link>
-
-          </div>
-        </div>
-      </div>
-    </nav>
+    <Navbar bg="white" expand="lg" className="shadow-sm py-3" sticky="top">
+      <Container>
+        <Navbar.Brand as={Link} to="/" className="fw-bold fs-2">
+          <span style={{ color: '#2d3e50' }}>FASHION</span>
+          <span style={{ color: '#46b881' }}>STORE</span>
+        </Navbar.Brand>
+        
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mx-auto gap-3">
+            <Nav.Link as={Link} to="/" className="fw-semibold">Home</Nav.Link>
+            <Nav.Link as={Link} to="/category/men's clothing" className="fw-semibold">Men</Nav.Link>
+            <Nav.Link as={Link} to="/category/women's clothing" className="fw-semibold">Women</Nav.Link>
+            <Nav.Link as={Link} to="/category/jewelery" className="fw-semibold">Accessories</Nav.Link>
+            <Nav.Link as={Link} to="/category/electronics" className="fw-semibold">Electronics</Nav.Link>
+          </Nav>
+          
+          <form onSubmit={handleSearch} className="d-flex me-3">
+            <input
+              type="text"
+              className="form-control me-2"
+              placeholder="Search products..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              style={{ borderRadius: '50px', borderColor: '#e2e8f0' }}
+            />
+            <button type="submit" className="btn btn-primary-custom" style={{ padding: '8px 20px' }}>
+              Search
+            </button>
+          </form>
+          
+          <Nav.Link as={Link} to="/cart" className="position-relative">
+            <i className="bi bi-bag" style={{ fontSize: '24px', color: '#2d3e50' }}></i>
+            {cartItemCount > 0 && (
+              <Badge 
+                bg="success" 
+                className="position-absolute top-0 start-100 translate-middle rounded-pill"
+                style={{ backgroundColor: '#46b881 !important' }}
+              >
+                {cartItemCount}
+              </Badge>
+            )}
+          </Nav.Link>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };
 
